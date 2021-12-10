@@ -64,9 +64,10 @@ const Home = ({propertiesForSale, propertiesForRent}) => (
     const propertyForRent = await fetchApi(`${baseUrl}/properties/list?locationExternalIDs=5002&purpose=for-rent&hitsPerPage=12`);
     return {
       props : {
-        propertiesForSale: propertyForSale?.hits || { },
-        propertiesForRent: propertyForRent?.hits || { }
+        propertiesForSale: propertyForSale?.hits || [],
+        propertiesForRent: propertyForRent?.hits || [],
+        fallback: false
       },
-      revalidate: 1,
+      
     };
   }
