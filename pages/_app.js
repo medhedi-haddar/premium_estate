@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Router from 'next/router';
 import NProgress from 'nprogress';
 import { ChakraProvider } from '@chakra-ui/react';
-import Layout from '../Components/Layout';
+import Layout from '../components/Layout';
 
 function MyApp({ Component, pageProps }) {
 
