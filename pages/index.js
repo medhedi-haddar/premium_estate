@@ -38,7 +38,7 @@ const Home = ({propertiesForSale, propertiesForRent}) => (
 
         />
         <Flex flexWrap="wrap" justifyContent="center">
-           {propertiesForRent.map((property) => <Property property={property} key={property.id}/>) }
+           {propertiesForRent.length > 0 ? propertiesForRent.map((property) => <Property property={property} key={property.id}/>) : "" }
         </Flex>
         <Banner
         purpose='BUY A HOME'
@@ -51,20 +51,22 @@ const Home = ({propertiesForSale, propertiesForRent}) => (
         imageUrl={CoverHouseSaleFiltered}
       />
       <Flex flexWrap="wrap" justifyContent="center">
-        {propertiesForSale.map((property) => <Property property={property} key={property.id}/>)}
+        {propertiesForSale.length > 0 ? propertiesForSale.map((property) => <Property property={property} key={property.id}/>) : ""}
       </Flex>
     </Box>
   )
 
 
-export async function getStaticProps(){
-  const propertyForSale = await fetchApi(`${baseUrl}/properties/list?locationExternalIDs=5002&purpose=for-sale&hitsPerPage=12`);
-  const propertyForRent = await fetchApi(`${baseUrl}/properties/list?locationExternalIDs=5002&purpose=for-rent&hitsPerPage=12`);
-  return {
-    props : {
-      propertiesForSale: propertyForSale?.hits,
-      propertiesForRent: propertyForRent?.hits
-    }
-  };
-}
-export default Home;
+  export default Home;
+  
+  export async function getStaticProps(){
+    const propertyForSale = await fetchApi(`${baseUrl}/properties/list?locationExternalIDs=5002&purpose=for-sale&hitsPerPage=12`);
+    const propertyForRent = await fetchApi(`${baseUrl}/properties/list?locationExternalIDs=5002&purpose=for-rent&hitsPerPage=12`);
+    return {
+      props : {
+        propertiesForSale: propertyForSale?.hits || { },
+        propertiesForRent: propertyForRent?.hits || { }
+      },
+      revalidate: 1,
+    };
+  }
