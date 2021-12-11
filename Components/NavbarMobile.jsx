@@ -11,6 +11,7 @@ function NavbarMobile() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const btnRef = useRef()
 
+
 return (
     <Flex p='2' borderColor='gray.100' 
         bg="gray.100" 
@@ -135,16 +136,16 @@ return (
                 <DrawerBody>
                     <Flex paddingTop='4' flexDirection="column" borderColor='gray.100'> 
                         <Link href='/' passHref textDecoration="none">
-                            <Button  width="100%" marginBottom="2" color="gray.500"><FcHome/><Spacer/>Home</Button>
+                            <Button  width="100%" marginBottom="2" color="gray.500" onClick={onClose}><FcHome/><Spacer/>Home</Button>
                         </Link>
                         <Link href='/search' passHref>
-                            <Button  width="100%" marginBottom="2" color="gray.500"><FcSearch/><Spacer/>Search</Button>
+                            <Button  width="100%" marginBottom="2" color="gray.500" onClick={onClose}><FcSearch/><Spacer/>Search</Button>
                         </Link>
                         <Link href='/search?purpose=for-sale' passHref>
-                            <Button  width="100%" marginBottom="2" color="gray.500"><FcKey/><Spacer/>Buy Property</Button>
+                            <Button  width="100%" marginBottom="2" color="gray.500" onClick={onClose}><FcKey/><Spacer/>Buy Property</Button>
                         </Link>
                         <Link href='/search?purpose=for-rent' passHref>
-                            <Button  width="100%" marginBottom="2" color="gray.500"><FcBookmark/><Spacer/>Rent Property</Button>
+                            <Button  width="100%" marginBottom="2" color="gray.500" onClick={onClose}><FcBookmark/><Spacer/>Rent Property</Button>
                         </Link> 
                     </Flex>
                 </DrawerBody>

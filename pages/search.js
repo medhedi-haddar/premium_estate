@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { Flex, Box, Text, Icon } from '@chakra-ui/react';
-import { BsFilter } from 'react-icons/bs';
-import SearchFilters from '../Components/SearchFilters';
-import Property from '../Components/Property';
+import { MdFilterAlt } from 'react-icons/md';
+import SearchFilters from '../components/SearchFilters';
+import Property from '../components/Property';
 
-import noresult from '../assets/images/noresult.svg'
+import undraw_no_data from '../assets/images/undraw_no_data.svg'
 import { fetchApi, baseUrl } from '../utils/fetchApi';
 
 const Search = ({properties}) => {
@@ -31,23 +31,23 @@ const Search = ({properties}) => {
             onClick={() => setSearchFilters((prevFilters) => !prevFilters)}
             >
                 <Text> Search Property by Filters</Text>
-                <Icon paddingLeft="2" w="7" as={BsFilter}/>
+                <Icon paddingLeft="2" w="7" as={MdFilterAlt}/>
             </Flex>
            
             {!searchFilters && <SearchFilters/>}
           
             <Text fontSize="2xl" p="4" fontWeight="bold">
-                Properties {router.query.purpose}
+                Properties {router.query.purpose && router.query.purpose.replace('-',' ') }
             </Text>
             {properties?.error && (<Text fontSize="sm" p="4" fontWeight="400">
                 Properties {properties.error}
             </Text>) }
             <Flex flexWrap="wrap">
-                {properties.length && properties.map((property) => <Property property={property} key={property.id}/>)}
+                {properties.length > 0 && properties.map((property) => <Property property={property} key={property.id}/>)}
             </Flex>
-            {properties.length === 0 && ( 
+            {properties.length <= 0 && ( 
                 <Flex justifyContent="center" alignItems="center" flexDirection="column" marginTop="5" marginBottom="5">
-                    <Image alt="no Result" src={noresult}/>
+                    <Image alt="no Result" src={undraw_no_data} width="200px" height="200px"/>
                     <Text fontSize="2xl" marginTop="3">No Result Found</Text>
             </Flex>
             )}
@@ -57,6 +57,7 @@ const Search = ({properties}) => {
 
 
 export async function getServerSideProps({ query }){
+ 
     const purpose = query.purpose || 'for-rent';
     const rentFrequency = query.rentFrequency || 'yearly';
     const priceMin = query.priceMin || '0';
@@ -73,7 +74,7 @@ export async function getServerSideProps({ query }){
 
      return {
       props : {
-        properties: data?.hits || {error : "Some filters were not accepted"},
+        properties: data?.hits || {error : "Some filters were not accepted like sort by `Newest`"},
       }
     };
   }

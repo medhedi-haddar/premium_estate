@@ -1,5 +1,6 @@
 import { Box, Flex, Text} from '@chakra-ui/react';
 import { SiNextdotjs } from 'react-icons/si'
+
 const Footer = () =>(
     <Box textAlign="center" p="5" color="gray.600" borderTop="1px" borderColor="gray.100">
         <Flex justifyContent="center" alignItems="center" direction={["column", "row", "row", "row"]}>
