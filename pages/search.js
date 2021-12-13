@@ -3,8 +3,8 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { Flex, Box, Text, Icon } from '@chakra-ui/react';
 import { MdFilterAlt } from 'react-icons/md';
-import SearchFilters from '../components/SearchFilters';
-import Property from '../components/Property';
+import SearchFilters from '../Components/SearchFilters';
+import Property from '../Components/Property';
 
 import undraw_no_data from '../assets/images/undraw_no_data.svg'
 import { fetchApi, baseUrl } from '../utils/fetchApi';
