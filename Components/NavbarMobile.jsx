@@ -132,7 +132,7 @@ return (
             <DrawerOverlay />
             <DrawerContent>
                 <DrawerCloseButton />
-                <DrawerHeader>Real estate</DrawerHeader>
+                <DrawerHeader>Premium Estate</DrawerHeader>
                 <DrawerBody>
                     <Flex paddingTop='4' flexDirection="column" borderColor='gray.100'> 
                         <Link href='/' passHref textDecoration="none">

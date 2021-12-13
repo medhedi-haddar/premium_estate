@@ -14,3 +14,13 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.video{
+  height : auto !important;
+}
+
+@media (min-width: 768px) {
+  .video{
+    height : 480px !important;
+  }
+}

@@ -55,9 +55,10 @@ const PropertyDetails = ({ propertyDetails: { price, rentFrequency, rooms, title
                     {videoCount > 0 && 
                         <Box width="100%">
                             
-                            <iframe
+                            <iframe className="video"
                                 width="100%"
                                 height="480"
+                                
                                 src={ `https://www.youtube.com/embed/${coverVideo.url}`}
                                 frameBorder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
